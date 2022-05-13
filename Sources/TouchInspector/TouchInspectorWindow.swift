@@ -17,12 +17,20 @@ public class TouchInspectorWindow: UIWindow {
     /**
      Whether to show the circular touch indicator.
      */
-    public var showTouches: Bool = true
+    public var showTouches: Bool = true {
+        didSet {
+            hideOverlaysIfNeeded()
+        }
+    }
     
     /**
      Whether to show the hit-test debugging overlay. If enabled, touch indicators will also be shown.
      */
-    public var showHitTesting: Bool = true
+    public var showHitTesting: Bool = true {
+        didSet {
+            hideOverlaysIfNeeded()
+        }
+    }
     
     private var touchOverlays: [UITouch : TouchOverlayView] = [:]
     
@@ -117,5 +125,19 @@ public class TouchInspectorWindow: UIWindow {
 
         Hit-Test: \(hitTestedView?.description ?? "nil")
         """
+    }
+    
+    private func hideOverlaysIfNeeded() {
+        if !showTouches && !showHitTesting {
+            touchOverlays.values.forEach { overlay in
+                overlay.removeFromSuperview()
+            }
+            touchOverlays = [:]
+        } else if showTouches {
+            touchOverlays.values.forEach { overlay in
+                overlay.hitTestingOverlay.isHidden = !showHitTesting
+            }
+        }
+        
     }
 }
