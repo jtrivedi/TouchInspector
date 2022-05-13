@@ -27,18 +27,20 @@ func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options conn
         return
     }
     
+    let rootViewController = /* Create your root/initial view controller, 
+                                either directly or by extracting from a Storyboard */
     #if DEBUG
     window = TouchInspectorWindow(windowScene: windowScene)
     #else
     window = UIWindow(windowScene: windowScene)
     #endif
     
-    window?.rootViewController = ViewController()
+    window?.rootViewController = initialViewController
     window?.makeKeyAndVisible()
 }
 ```
 
-Touch and hit-testing visualization is enabled by default when creating a `TouchInspectorWindow`. You can change that with the following properties:
+Touch **and** hit-testing visualization is enabled by default when creating a `TouchInspectorWindow`. You can change that with the following properties:
 
 ```swift
 // Show the touch indicator, but not the hit-testing overlay.
