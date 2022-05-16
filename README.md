@@ -35,7 +35,7 @@ func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options conn
     window = UIWindow(windowScene: windowScene)
     #endif
     
-    window?.rootViewController = initialViewController
+    window?.rootViewController = rootViewController
     window?.makeKeyAndVisible()
 }
 ```
