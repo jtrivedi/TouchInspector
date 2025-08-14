@@ -13,7 +13,7 @@ TouchInspector can optionally also show hit-testing information (i.e. which view
 Add TouchInspector to your app's `Package.swift` file, or selecting `File -> Add Packages` in Xcode:
 
 ```swift
-.package(url: "https://github.com/jtrivedi/TouchInspector", from: "0.1.0"))
+.package(url: "https://github.com/jtrivedi/TouchInspector", from: "0.2.0"))
 ```
 #### Usage
 
@@ -46,4 +46,14 @@ Touch **and** hit-testing visualization is enabled by default when creating a `T
 // Show the touch indicator, but not the hit-testing overlay.
 window.showTouches = true
 window.showHitTesting = false
+```
+
+Finally, you can optionally customize the appearance of the touch indicator via the `touchStyle` property:
+
+```swift
+ window.touchStyle = TouchStyle(
+    material: .color(.white.withAlphaComponent(0.6)),
+    size: CGSize(width: 50, height: 50),
+    border: TouchStyle.Border(color: .systemBlue, width: 3)
+)
 ```
