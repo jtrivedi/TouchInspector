@@ -196,4 +196,18 @@ public class TouchInspectorWindow: UIWindow {
         Hit-Test: \(hitTestedView?.description ?? "nil")
         """
     }
+    
+    private func hideOverlaysIfNeeded() {
+        if !showTouches && !showHitTesting {
+            touchOverlays.values.forEach { overlay in
+                overlay.removeFromSuperview()
+            }
+            touchOverlays = [:]
+        } else if showTouches {
+            touchOverlays.values.forEach { overlay in
+                overlay.hitTestingOverlay.isHidden = !showHitTesting
+            }
+        }
+        
+    }
 }
