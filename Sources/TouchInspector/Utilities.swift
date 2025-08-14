@@ -26,4 +26,3 @@ func animateBlock(_ block: @escaping (() -> Void), completion: (() -> Void)? = n
     }
 
 }
-
